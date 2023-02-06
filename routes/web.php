@@ -9,6 +9,10 @@ use App\Http\Controllers\ImageController;
 use App\Http\Controllers\ProductsController;
 Use App\Http\Controllers\ReservationController;
 
+
+//URL::forceRootUrl('http://studenti.sum.ba/projekti/rwa/2023/g17');
+
+
 Route::get('/', function () {
     return view('load');
 });
