@@ -12,11 +12,6 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
-
-
-<title>Car Rental Service</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -47,6 +42,7 @@ body, html {
   margin-right: auto;
 
 }
+
 
 	
 
@@ -275,6 +271,25 @@ table.table .avatar {
 .modal form label {
 	font-weight: normal;
 }	
+body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
+
+body, html {
+  height: 100%;
+  line-height: 1.8;
+}
+
+/* Full height image header */
+.bgimg-1 {
+  background-position: center;
+  background-size: cover;
+  background-image: url("https://img-ik.cars.co.za/news-site-za/images/2022/06/a45-dyn.jpg");
+  min-height: 100%;
+}
+
+.w3-bar .w3-button {
+  padding: 14px;
+  position: center;
+}
 </style>
 <script>
 $(document).ready(function(){
@@ -313,7 +328,6 @@ $(document).ready(function(){
     <div class="w3-right w3-hide-small">
     <a href="{{ route('after') }}" class="w3-bar-item w3-button">HOME</a>
       <a href="{{  route('products.index')  }}" class="w3-bar-item w3-button">Ponuda Vozila</a>
-      <a class="w3-bar-item w3-button" href="{{ route('after') }}#contact">Kontaktirajte nas</a>
       <a class="w3-bar-item w3-button" href="{{ route('reservation') }}">Rezervacije</a>
       
 
@@ -367,36 +381,6 @@ $(document).ready(function(){
   </div>
 </div>
 
-<!DOCTYPE html>
-<html>
-<title>Car Rental Service</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", sans-serif}
-
-body, html {
-  height: 100%;
-  line-height: 1.8;
-}
-
-/* Full height image header */
-.bgimg-1 {
-  background-position: center;
-  background-size: cover;
-  background-image: url("https://img-ik.cars.co.za/news-site-za/images/2022/06/a45-dyn.jpg");
-  min-height: 100%;
-}
-
-.w3-bar .w3-button {
-  padding: 14px;
-  position: center;
-}
-</style>
-<body>
 
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
@@ -671,5 +655,8 @@ body, html {
 		mySidebar.style.display = "none";
 	}
 	</script>
+	   <footer>
+        <p class="text-center my-5">Copyright © 2022 Car Rental Service Zvonko & Veselko</p>
+    </footer>
 </body>
 </html>

@@ -207,7 +207,7 @@ body, html {
   <div class="w3-row-padding w3-grayscale" style="margin-top:64px">
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="C:\xampp\htdocs\RwaProjekt-dz1\RwaProjekt-dz1\sss.jpg" alt="Veselko" style="width:100%">
+        <img src="https://img.freepik.com/free-vector/professional-car-rental-logo_23-2149509962.jpg?w=740&t=st=1675759604~exp=1675760204~hmac=82c0b279cc29b21338de130f7dac37e71a016f93f55c3c092f3e8fa55ab884c0" alt="Veselko" style="width:100%">
         <div class="w3-container">
         <h3>Veselko Coric</h3>
           <p class="w3-opacity">Clan Tima
@@ -219,7 +219,7 @@ body, html {
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="C:\xampp\htdocs\RwaProjekt-dz1\RwaProjekt-dz1\sss.jpg" alt="Zvone" style="width:100%">
+        <img src="https://img.freepik.com/free-vector/professional-car-rental-logo_23-2149509962.jpg?w=740&t=st=1675759604~exp=1675760204~hmac=82c0b279cc29b21338de130f7dac37e71a016f93f55c3c092f3e8fa55ab884c0" alt="Zvonko" style="width:100%">
         <div class="w3-container">
         <h3>Zvonko Zlopasa</h3>
           <p class="w3-opacity">Clan Tima

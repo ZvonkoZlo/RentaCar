@@ -26,7 +26,19 @@ body, html {
 }
 
 .button1 {
-  background-color: black; /* Green */
+  background-color: green;
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+.button2 {
+  background-color: red; 
   border: none;
   color: white;
   padding: 20px;
@@ -71,7 +83,7 @@ body, html {
 </style>
 
 
-    <title>Fleet - Car Rental Services</title>
+    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
@@ -79,7 +91,7 @@ body, html {
             background-color: gray;
         }
     div.promijeni:hover {
-    background-color:black;
+    background-color:rgb(0, 32, 92);
     }
 
 
@@ -95,10 +107,10 @@ body, html {
        <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card" id="myNavbar">
-    <a href="{{ route('after') }}" class="w3-bar-item w3-button w3-wide">Car Rental services</a>
+    <a href="{{ route('load') }}" class="w3-bar-item w3-button w3-wide">Car Rental services</a>
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
-    <a href="{{ route('after') }}" class="w3-bar-item w3-button">HOME</a>
+    <a href="{{ route('load') }}" class="w3-bar-item w3-button">HOME</a>
       <a href="{{  route('products.index')  }}" class="w3-bar-item w3-button">Ponuda Vozila</a>
       @if(auth()->check())
       <a class="w3-bar-item w3-button" href="{{ route('reservation') }}">Rezervacije</a>
@@ -158,29 +170,32 @@ body, html {
               <!-- Sidebar on small screens when clicking the menu icon -->
               <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
                 <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
-                <a href="{{ route('after') }}" class="w3-bar-item w3-button">HOME</a>
+                <a href="{{ route('load') }}" class="w3-bar-item w3-button">HOME</a>
                 <a href="{{  route('products.index')  }}" class="w3-bar-item w3-button">Ponuda Vozila</a>
-            
+                @if(auth()->check())
+                @if (Auth::user()->isSuperAdmin())
                 <a class="w3-bar-item w3-button" href="{{ route('reservation') }}">Rezervacije</a>
-                
+                @endif
+                @endif
           
                 @if (Route::has('login'))
-                        
-                        @if (Auth::user()->isSuperAdmin())
-                            
-                            <a class="w3-bar-item w3-button" href="{{ route('korisnici') }}">Korisnici</a>
-                           
+                      @if (auth()->check())
+                         @if (Auth::user()->isSuperAdmin())
+                             <a class="w3-bar-item w3-button" href="{{ route('korisnici') }}">Korisnici</a>
+                           @endif
+                           <a href="{{ route('logoutt') }}"
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                           class="w3-bar-item w3-button">
+                           Logout
+                       </a>
+                       <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                           @csrf
+                       </form>
                         @endif
-                        @endif
-          
-                        <a href="{{ route('logoutt') }}"
-                                  onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                                  class="w3-bar-item w3-button">
-                                  Logout
-                              </a>
-                              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                  @csrf
-                              </form>
+                       
+                      @else
+                       
+                              @endif
           
                               @if (Route::has('login'))
                           <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
@@ -222,7 +237,7 @@ body, html {
         
         <div class="flex justify-end m-2 p-2 vertical-center; ">
             <a href="{{ route('products.create') }}"
-            class="w3-button w3-black vertical-center ">Novo vozilo</a>
+            class="w3-button w3-blue vertical-center ">Novo vozilo</a>
         </div>
         @endif
         @endif
@@ -280,7 +295,7 @@ body, html {
                             @if (Auth::user()->isSuperAdmin() or Auth::user()->isAdmin())
                                 <div class="d-flex justify-content-center">
                                     <a href="{{ route('products.edit', $category->id) }}"><input type='submit' class="button1" value="Ažuriraj" /></a>
-                                    <a href="izbrisi/{{ $category->id }}"><button class="button1 ">Izbriši</button> </a>
+                                    <a href="izbrisi/{{ $category->id }}"><button class="button2 ">Izbriši</button> </a>
                                 </div>
                             @endif
                             @endif

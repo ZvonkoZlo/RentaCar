@@ -39,17 +39,37 @@ body, html {
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card" id="myNavbar">
-    <a href="{{ route('after') }}" class="w3-bar-item w3-button w3-wide">Car Rental services</a>
+    <a href="{{ route('load') }}" class="w3-bar-item w3-button w3-wide">Car Rental services</a>
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
-      <a href="{{ route('after') }}" class="w3-bar-item w3-button">HOME</a>
+      <a href="{{ route('load') }}" class="w3-bar-item w3-button">HOME</a>
       <a href="{{  route('products.index')  }}" class="w3-bar-item w3-button">Ponuda Vozila</a>
-     
+
+      @if(auth()->check())
+      @if (Route::has('login'))
+
+      <a class="w3-bar-item w3-button" href="{{ route('reservation') }}">Rezervacije</a>
+      @if(auth()->check())
+      @if (Auth::user()->isSuperAdmin())
+                <a class="w3-bar-item w3-button" href="{{ route('korisnici') }}">Korisnici</a>
+                 @endif
+                 @endif
+                 <a href="{{ route('logoutt') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="w3-bar-item w3-button">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    @endif
+      @else
+
       <a href="{{ route('login') }}" class="w3-bar-item w3-button">Log in</a>
       <a href="{{ route('register') }}" class="w3-bar-item w3-button">Registriraj se</a>
-                            
+                            @endif
                         
-                        
+                                       
     </div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
@@ -58,13 +78,39 @@ body, html {
     </a>
   </div>
 </div>
-
+<a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+  <i class="fa fa-bars"></i>
+</a>   
 <!-- Sidebar on small screens when clicking the menu icon -->
 <nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
   <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
-  <a href="#team" onclick="w3_close()" class="w3-bar-item w3-button">Tim</a>
+  <a href="{{ route('load') }}" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
   <a href="{{  route('products.index')  }}" onclick="w3_close()" class="w3-bar-item w3-button">Ponuda automobila</a>
-  <a href="#pricing" onclick="w3_close()" class="w3-bar-item w3-button">Cijene</a>
+ 
+  @if(auth()->check())
+  @if (Route::has('login'))
+
+  <a class="w3-bar-item w3-button" href="{{ route('reservation') }}">Rezervacije</a>
+  @if(auth()->check())
+  @if (Auth::user()->isSuperAdmin())
+            <a class="w3-bar-item w3-button" href="{{ route('korisnici') }}">Korisnici</a>
+             @endif
+             @endif
+             <a href="{{ route('logoutt') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    class="w3-bar-item w3-button">
+                    Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                @endif
+  @else
+
+  <a href="{{ route('login') }}" class="w3-bar-item w3-button">Log in</a>
+  <a href="{{ route('register') }}" class="w3-bar-item w3-button">Registriraj se</a>
+                        @endif
+                    
 
 </nav>
 
@@ -74,7 +120,7 @@ body, html {
     <span class="w3-jumbo w3-hide-small">Car Rental Serivces</span><br>
     <span class="w3-xxlarge w3-hide-large w3-hide-medium">Car Rental Serivces</span><br>
     <span class="w3-large">Veliki izbor vozila.</span>
-    <p><a href="{{ route('register') }}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Rezerviraj vozilo jos danas</a></p>
+    <p><a href="{{ route('login') }}" class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">Rezerviraj vozilo jos danas</a></p>
   </div> 
   <div class="w3-display-bottomleft w3-text-grey w3-large" style="padding:24px 48px">
     <i class="fa fa-facebook-official w3-hover-opacity"></i>
@@ -133,11 +179,11 @@ body, html {
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="C:\xampp\htdocs\RwaProjekt-dz1\RwaProjekt-dz1\sss.jpg" alt="Zvone" style="width:100%">
+        <img src="https://img.freepik.com/free-vector/professional-car-rental-logo_23-2149509962.jpg?w=740&t=st=1675759604~exp=1675760204~hmac=82c0b279cc29b21338de130f7dac37e71a016f93f55c3c092f3e8fa55ab884c0" alt="Zvone" style="width:100%">
         <div class="w3-container">
         <h3>Veselko Coric</h3>
           <p class="w3-opacity">Clan Tima
-          <p>Student Trece Godine studija Racunarstva na Fakultetu Strojarstva,Racunarstva,Elektrotehnike u Mostaru.
+          <p>Student trece godine studija Racunarstva na Fakultetu Strojarstva,Racunarstva,Elektrotehnike u Mostaru.
             Dolazim iz Mostar.Broj indeksa:1728/RR
           </p>
           <a href="{{ route('kontakt') }}" ><p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Kontakt</button></p></a>
@@ -146,12 +192,12 @@ body, html {
     </div>
     <div class="w3-col l3 m6 w3-margin-bottom">
       <div class="w3-card">
-        <img src="C:\xampp\htdocs\RwaProjekt-dz1\RwaProjekt-dz1\sss.jpg" alt="Zvone" style="width:100%">
+        <img src="https://img.freepik.com/free-vector/professional-car-rental-logo_23-2149509962.jpg?w=740&t=st=1675759604~exp=1675760204~hmac=82c0b279cc29b21338de130f7dac37e71a016f93f55c3c092f3e8fa55ab884c0" alt="Zvone" style="width:100%">
         <div class="w3-container">
         <h3>Zvonko Zlopasa</h3>
           <p class="w3-opacity">Clan Tima
-          <p>Student Trece Godine studija Racunarstva na Fakultetu Strojarstva,Racunarstva,Elektrotehnike u Mostaru.
-            Dolazim iz Ljubuskog.Broj indeksa:1709/RR >
+          <p>Student trece godine studija Racunarstva na Fakultetu Strojarstva,Racunarstva,Elektrotehnike u Mostaru.
+            Dolazim iz Ljubuskog.Broj indeksa:1709/RR
           </p>
           <a href="{{ route('kontakt1') }}" ><p><button class="w3-button w3-light-grey w3-block"><i class="fa fa-envelope"></i> Kontakt</button></p></a>
         </div>

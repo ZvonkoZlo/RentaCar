@@ -189,13 +189,13 @@
 								<div class="col-sm-6">
 									<div class="form-group">
 										<span class="form-label">Prezime</span>
-										<input class="form-control" name="lastname" type="text" value="Prezime" required>
+										<input class="form-control" name="lastname" type="text"  required>
 									</div>
 								</div>
 								<div class="col-sm-6">
 									<div class="form-group">
 										<span class="form-label">Email</span>
-										<p class="form-control" >  {{Auth::user()->email}}</p>
+										<span class="form-control" >  {{Auth::user()->email}}</span>
 										{{-- <input class="form-control" type="email" name="email" value=" {{Auth::user()->email}} " required> --}}
 									</div>
 								</div>
@@ -234,6 +234,6 @@
 			</div>
 		</div>
 	</div>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</body>
 
 </html>

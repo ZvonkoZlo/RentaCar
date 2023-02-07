@@ -50,18 +50,18 @@ class Admin extends Seeder
         ]);
 
         Category::create([
-            'name' => 'Bmw',
-            'description' => 'M3',
+            'name' => 'Bmw CLS',
+            'description' => 'Bmw 3.0 CLS',
            'image'=> 'public/categories/3ygMP2MxSbkFErMynBMOCR9oJuuatVYm9GZYjE8o.png',
             'price' => '640',
 
         ]);
 
         Category::create([
-            'name' => 'Bmw',
-            'description' => 'm4',
+            'name' => 'Bmw M4 Competition',
+            'description' => 'Toronto Red BMW M4 Competition(G82)',
            'image'=> 'public/images/KfCW2NUKJSh7AcUczkOPX2rJVkL1LKwSOQFN8tmg.jpg',
-            'price' => '840',
+            'price' => '1120',
 
         ]);
 
