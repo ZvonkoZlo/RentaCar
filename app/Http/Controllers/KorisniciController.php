@@ -10,7 +10,7 @@ use App\Models\User;
 
 class KorisniciController extends Controller
 {
-  /*  public function show($id)
+    /*  public function show($id)
 {
     //
     $users = User::find($id);
@@ -25,46 +25,46 @@ public function edit(Request $request, $id) {
  
 }*/
 
-public function index()
-{
-    $korisnik = User::all();
-    return view('users.index', compact('korisnik'));
-}
+    public function index()
+    {
+        $korisnik = User::all();
+        return view('users.index', compact('korisnik'));
+    }
 
 
-public function edit($id)
-{
-    $korisnik = User::find($id);
-    return view('users.edit', compact('korisnik'));
-}
+    public function edit($id)
+    {
+        $korisnik = User::find($id);
+        return view('users.edit', compact('korisnik'));
+    }
 
-// public function edit(User $user) {
-//     return view('users.edit', compact('user'));
-// }
+    // public function edit(User $user) {
+    //     return view('users.edit', compact('user'));
+    // }
 
-public function update(Request $request, $id)
-{
-    $korisnik = User::find($id);
-    $korisnik->update([
-        'name' => $request->name,
-        'email' => $request->email,
-        'is_admin' => $request->uloga,
-    ]);
-    $korisnik = User::all();
+    public function update(Request $request, $id)
+    {
+        $korisnik = User::find($id);
+        $korisnik->update([
+            'name' => $request->name,
+            'email' => $request->email,
+            'is_admin' => $request->uloga,
+        ]);
+        $korisnik = User::all();
 
-    return to_route('users.index');
-}
-
-
+        return to_route('users.index');
+    }
 
 
- 
 
 
-    public function delete($id){
+
+
+
+    public function delete($id)
+    {
         $brisi = User::find($id);
         $brisi->delete();
         return redirect('/korisnici');
     }
-
 }

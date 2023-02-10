@@ -11,10 +11,11 @@ use App\Models\Gradovi;
 class GradoviController extends Controller
 {
 
-public function index(){
+    public function index()
+    {
 
-    $gradovi = Gradovi::all();
- 
-    return view('cart.index', compact('gradovi'));
-}
+        $gradovi = Gradovi::all();
+
+        return view('cart.index', compact('gradovi'));
+    }
 }

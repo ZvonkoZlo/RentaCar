@@ -8,27 +8,32 @@ use Illuminate\Http\Request;
 use App\Models\Menu;
 use App\Models\Category;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class ProductsController extends Controller
 {
-    public function index(){
+    public function index()
+    {
 
         $products = Category::all();
         return view('product.index', compact('products'));
-
     }
 
-        public function create(){
-            
-            return view('product.create');
-
-
-        }
-
-
-
-        public function edit($id)
+    public function create()
     {
+        if (!Auth::check()) {
+            return abort(403);
+        }
+        return view('product.create');
+    }
+
+
+
+    public function edit($id)
+    {
+        if (!Auth::check()) {
+            return abort(403);
+        }
         $category = Category::find($id);
         return view('product.edit', compact('category'));
     }
@@ -37,6 +42,9 @@ class ProductsController extends Controller
 
     public function update(Request $request, $id)
     {
+        if (!Auth::check()) {
+            return abort(403);
+        }
         $category = Category::find($id);
         $request->validate([
             'name' => 'required',
@@ -53,32 +61,35 @@ class ProductsController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'image' => $image,
-            'price' =>$request->price
+            'price' => $request->price
         ]);
         return to_route('products.index');
     }
 
 
-        public function store(CategoryStoreRequest $request){
-            $image = $request->file('image')->store('public/images');
-            Category::create([
-                'name'=> $request->name,
-                'description'=> $request->description,
-                'image'=>$image,
-                'price'=>$request->price
-
-            ]);
-            return to_route('products.index');
+    public function store(CategoryStoreRequest $request)
+    {
+        if (!Auth::check()) {
+            return abort(403);
         }
+        $image = $request->file('image')->store('public/images');
+        Category::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'image' => $image,
+            'price' => $request->price
 
-        public function izbrisi($id){
-            $brisi = Category::find($id);
-            $brisi->delete();
-            return to_route('products.index');
-        }
-
-
-        
+        ]);
+        return to_route('products.index');
     }
-   
 
+    public function izbrisi($id)
+    {
+        if (!Auth::check()) {
+            return abort(403);
+        }
+        $brisi = Category::find($id);
+        $brisi->delete();
+        return to_route('products.index');
+    }
+}

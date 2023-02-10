@@ -35,22 +35,40 @@ body, html {
 
 </style>
 <body>
-
 <!-- Navbar (sit on top) -->
 <div class="w3-top">
   <div class="w3-bar w3-black w3-card" id="myNavbar">
-    <a href="{{ route('after') }}" class="w3-bar-item w3-button w3-wide">Car Rental services</a>
+    <a href="{{ route('load') }}" class="w3-bar-item w3-button w3-wide">Car Rental services</a>
     <!-- Right-sided navbar links -->
     <div class="w3-right w3-hide-small">
-      <a href="{{ route('after') }}" class="w3-bar-item w3-button">HOME</a>
+      <a href="{{ route('load') }}" class="w3-bar-item w3-button">HOME</a>
       <a href="{{  route('products.index')  }}" class="w3-bar-item w3-button">Ponuda Vozila</a>
-    
-      @if (auth()->check()==0)
+
+      @if(auth()->check())
+      @if (Route::has('login'))
+
+      <a class="w3-bar-item w3-button" href="{{ route('reservation') }}">Rezervacije</a>
+      @if(auth()->check())
+      @if (Auth::user()->isSuperAdmin())
+                <a class="w3-bar-item w3-button" href="{{ route('korisnici') }}">Korisnici</a>
+                 @endif
+                 @endif
+                 <a href="{{ route('logoutt') }}"
+                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                        class="w3-bar-item w3-button">
+                        Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                    @endif
+      @else
+
       <a href="{{ route('login') }}" class="w3-bar-item w3-button">Log in</a>
       <a href="{{ route('register') }}" class="w3-bar-item w3-button">Registriraj se</a>
-    @endif
+                            @endif
                         
-                        
+                                       
     </div>
     <!-- Hide right-floated links on small screens and replace them with a menu icon -->
 
@@ -59,17 +77,49 @@ body, html {
     </a>
   </div>
 </div>
+<a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+  <i class="fa fa-bars"></i>
+</a>   
+<!-- Sidebar on small screens when clicking the menu icon -->
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
+  <a href="{{ route('load') }}" onclick="w3_close()" class="w3-bar-item w3-button">Home</a>
+  <a href="{{  route('products.index')  }}" onclick="w3_close()" class="w3-bar-item w3-button">Ponuda automobila</a>
+ 
+  @if(auth()->check())
+  @if (Route::has('login'))
+
+  <a class="w3-bar-item w3-button" href="{{ route('reservation') }}">Rezervacije</a>
+  @if(auth()->check())
+  @if (Auth::user()->isSuperAdmin())
+            <a class="w3-bar-item w3-button" href="{{ route('korisnici') }}">Korisnici</a>
+             @endif
+             @endif
+             <a href="{{ route('logoutt') }}"
+                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                    class="w3-bar-item w3-button">
+                    Logout
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+                @endif
+  @else
+
+  <a href="{{ route('login') }}" class="w3-bar-item w3-button">Log in</a>
+  <a href="{{ route('register') }}" class="w3-bar-item w3-button">Registriraj se</a>
+                        @endif
+                    
+
+</nav>
+
+
 
 <!-- Contact Section -->
 <div class="w3-container w3-light-grey" style="padding:128px 16px" id="contact">
-  <h3 class="w3-center">CONTACT</h3>
-  <p class="w3-center w3-large">Lets get in touch. Send us a message:</p>
-  @if (auth()->check() && auth()->user() !== null)
-  @if (auth()->user()->isSuperAdmin())
-      Vi ste super admin
-  @endif
+  <h3 class="w3-center">Kontakt</h3>
+  <p class="w3-center w3-large">Ostanimo u kontaktu, Pošaljite nam poruku:</p>
 
-@endif
 
 
 
@@ -86,13 +136,12 @@ body, html {
       <p><input class="w3-input w3-border" type="text" placeholder="Message" required name="Message"></p>
       <p>
         <button class="w3-button w3-black" type="submit">
-          <i class="fa fa-paper-plane"></i> SEND MESSAGE
+          <i class="fa fa-paper-plane"></i> Posalji poruku
         </button>
       </p>
     </form>
 
-    <!-- Image of location/map -->
-    <img src="/w3images/map.jpg" class="w3-image w3-greyscale" style="width:100%;margin-top:48px">
+  
   </div>
 </div>
 
